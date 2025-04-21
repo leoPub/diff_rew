@@ -1,2 +1,2 @@
 # READ ME
-Source code for paper "A DIFFERENTIATED REWARD METHOD FOR REINFORCEMENT LEARNING BASED MULTI-VEHICLE COOPERATIVE DECISION-MAKING ALGORITHMS"
+Source code for paper "A Differentiated Reward Method for Reinforcement Learning Based Multi-Vehicle Cooperative Decision-Making Algorithms"

@@ -215,7 +215,7 @@ if __name__ == "__main__":
     test = False
     now = datetime.now()
     time_str = now.strftime("%m%d%H%M%S")
-    method = 'QMIX'  # maddpg mappo madqn qmix
+    method = 'qmix'  # maddpg mappo madqn qmix
     flow_rate = 250  # veh/(lane*hour)
     penetration = 1.0  # n_cav / n_veh  0.25 0.5 0.75 1.0
 

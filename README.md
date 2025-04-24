@@ -30,4 +30,10 @@ We provide the source code implementation of the reward-differential method for 
 
 5. Run experiment from [`./highway_exp.py`](./highway_exp.py)
 
-6. 
+## 🤗 Repo Links
+
+- We thank the [Google TPU Research Cloud program](https://sites.research.google/trc/about/) for providing computation resources.
+- Our work was heavily inspired by [SoundStorm](https://arxiv.org/abs/2305.09636), [Parakeet](https://jordandarefsky.com/blog/2024/parakeet/), and [Descript Audio Codec](https://github.com/descriptinc/descript-audio-codec).
+- Hugging Face for providing the ZeroGPU Grant.
+- "Nari" is a pure Korean word for lily.
+- We thank Jason Y. for providing help with data filtering.

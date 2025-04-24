@@ -10,7 +10,7 @@
   />
 </p>
 
-We provide the source code implementation of the reward-differential method for the QMIX algorithm herein. Due to substantial subsequent modifications in our extended work, implementations for all methodologies cannot be comprehensively provided. The MADQN and MAPPO implementations were adapted from the following repositories respectively. For any reproduction issues, please contact leohancnjs@outlook.com.
+We provide the source code implementation of the reward-differential method for the QMIX algorithm herein. Due to substantial subsequent modifications in our extended work, implementations for MADQN and MAPPO could be adapted from the repositories we provide below. For any reproduction issues, please contact leohancnjs@outlook.com.
 
 ## 🚀 Getting Started
 

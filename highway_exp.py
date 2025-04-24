@@ -7,8 +7,8 @@ from flow.controllers import SimLaneChangeController, ContinuousRouter, IDMContr
 from env_highway_ctn import MultiAgentHighwayPOEnv
 import torch
 from types import SimpleNamespace as simNp
-from components.episode_buffer import ReplayBuffer, EpisodeBatch
-from components.transforms import OneHot
+from rl_comp.episode_buffer import ReplayBuffer, EpisodeBatch
+from rl_comp.transforms import OneHot
 from functools import partial
 from learners import REGISTRY as le_REGISTRY
 from controllers import REGISTRY as mac_REGISTRY
@@ -124,7 +124,7 @@ def run_exp(flow_rate, penetration, run_episode=4000, render=False, test=False, 
     # Initialize the traffic lights. The meanings of disable_tb and disable_ramp_meter are discussed later.
     traffic_lights = TrafficLightParams()
 
-    additional_net_params = {"speed_limit": 23,
+    additional_net_params = {"speed_limit": 25,
                              "length": 250,
                              "lanes": 4,
                              "num_edges": 1,
@@ -173,14 +173,10 @@ def run_exp(flow_rate, penetration, run_episode=4000, render=False, test=False, 
                      'terminated': {'vshape': (1,),
                                     'dtype': torch.uint8},
                      'inflow': {'vshape': (2*args.lanes,)},
-                     'topology': {'vshape': (4*args.n_agents,)},
-                     'max_idx': {'vshape': (args.n_agents,)},
-                     'min_idx': {'vshape': (args.n_agents,)},
-                     'visit': {'vshape': (1,)},
                      'agents_num': {'vshape': (1,)}
                      }
     groups = {'agents': args.n_agents}
-    preprocess = {"actions": ("actions_onehot", [OneHot(out_dim=args.n_actions)])}
+    preprocess = {"actions": ("actions_onehot", [OneHot(output_dimension=args.n_actions)])}
     logger = Logger(get_logger())
     logger.setup_tb(log_dir)
     batch = partial(EpisodeBatch, buffer_scheme, groups, 1, args.episode_limit + 1,
@@ -215,7 +211,7 @@ if __name__ == "__main__":
     test = False
     now = datetime.now()
     time_str = now.strftime("%m%d%H%M%S")
-    method = 'qmix'  # maddpg mappo madqn qmix
+    method = 'QMIX'  # maddpg mappo madqn qmix
     flow_rate = 250  # veh/(lane*hour)
     penetration = 1.0  # n_cav / n_veh  0.25 0.5 0.75 1.0
 

@@ -1,6 +1,7 @@
 # READ ME
 
 > *Source code for paper "A Differentiated Reward Method for Reinforcement Learning Based Multi-Vehicle Cooperative Decision-Making Algorithms"*
+> https://doi.org/10.48550/arXiv.2502.00352
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 

@@ -36,4 +36,5 @@ We provide the source code implementation of the reward-differential method for 
 
 - MADQN implementation is adapted from project https://github.com/Jacklinkk/Graph_CAVs .
 - MAPPO implementation is adapted from project https://github.com/Lizhi-sjtu/MARL-code-pytorch
+- Reward Centering: https://github.com/facebookresearch/DeepRL-continuing-tasks
 

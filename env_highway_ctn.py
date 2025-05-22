@@ -685,69 +685,6 @@ class MultiAgentHighwayPOEnv(gym.Env, metaclass=ABCMeta):
                 orientation, id)
             self.sights.append(sight)
 
-    def cur_pos(self):
-
-        pos = f"pos/{''.join(random.choices(string.ascii_letters + string.digits, k=10))}"
-        self.k.kernel_api.simulation.saveState(pos)
-        with open(pos, 'r', encoding='utf-8') as file:
-            file_content = file.read()
-        file_content = file_content.replace('insertionChecks="none" ', '')
-        with open(pos, 'w', encoding='utf-8') as file:
-            file.write(file_content)
-        file.close()
-
-        veh_attr = {'num_not_departed': copy.deepcopy(self.k.vehicle.num_not_departed),
-                    'num_rl_vehicles': copy.deepcopy(self.k.vehicle.num_rl_vehicles),
-                    'num_vehicles': copy.deepcopy(self.k.vehicle.num_vehicles),
-                    'prev_last_lc': copy.deepcopy(self.k.vehicle.prev_last_lc),
-                    'previous_speeds': copy.deepcopy(self.k.vehicle.previous_speeds),
-                    'time_counter': copy.deepcopy(self.k.vehicle.time_counter),
-                    '_TraCIVehicle__controlled_ids': copy.deepcopy(self.k.vehicle._TraCIVehicle__controlled_ids),
-                    '_TraCIVehicle__controlled_lc_ids': copy.deepcopy(self.k.vehicle._TraCIVehicle__controlled_lc_ids),
-                    '_TraCIVehicle__human_ids': copy.deepcopy(self.k.vehicle._TraCIVehicle__human_ids),
-                    '_TraCIVehicle__ids': copy.deepcopy(self.k.vehicle._TraCIVehicle__ids),
-                    '_TraCIVehicle__observed_ids': copy.deepcopy(self.k.vehicle._TraCIVehicle__observed_ids),
-                    '_TraCIVehicle__rl_ids': copy.deepcopy(self.k.vehicle._TraCIVehicle__rl_ids),
-                    '_TraCIVehicle__sumo_obs': copy.deepcopy(self.k.vehicle._TraCIVehicle__sumo_obs),
-                    '_TraCIVehicle__vehicles': copy.deepcopy(self.k.vehicle._TraCIVehicle__vehicles),
-                    '_arrived_ids': copy.deepcopy(self.k.vehicle._arrived_ids),
-                    '_ids_by_edge': copy.deepcopy(self.k.vehicle._ids_by_edge),
-                    '_arrived_rl_ids': copy.deepcopy(self.k.vehicle._arrived_rl_ids),
-                    '_departed_ids': copy.deepcopy(self.k.vehicle._departed_ids),
-                    '_num_arrived': copy.deepcopy(self.k.vehicle._num_arrived),
-                    '_num_departed': copy.deepcopy(self.k.vehicle._num_departed),
-                    }
-
-        return pos, veh_attr
-
-    def re_pos(self, pos, veh_attr):
-
-        self.k.kernel_api.simulation.loadState(pos)
-
-        self.k.update(reset=True)
-
-        self.k.vehicle.num_vehicles = veh_attr['num_vehicles']
-        self.k.vehicle.prev_last_lc = veh_attr['prev_last_lc']
-        self.k.vehicle.previous_speeds = veh_attr['previous_speeds']
-        self.k.vehicle.time_counter = veh_attr['time_counter']
-        self.k.vehicle._TraCIVehicle__controlled_ids = veh_attr['_TraCIVehicle__controlled_ids']
-        self.k.vehicle._TraCIVehicle__controlled_lc_ids = veh_attr['_TraCIVehicle__controlled_lc_ids']
-        self.k.vehicle._TraCIVehicle__human_ids = veh_attr['_TraCIVehicle__human_ids']
-        self.k.vehicle._TraCIVehicle__ids = veh_attr['_TraCIVehicle__ids']
-        self.k.vehicle._TraCIVehicle__observed_ids = veh_attr['_TraCIVehicle__observed_ids']
-        self.k.vehicle._TraCIVehicle__rl_ids = veh_attr['_TraCIVehicle__rl_ids']
-        self.k.vehicle._TraCIVehicle__sumo_obs = veh_attr['_TraCIVehicle__sumo_obs']
-        self.k.vehicle._TraCIVehicle__vehicles = veh_attr['_TraCIVehicle__vehicles']
-        self.k.vehicle._arrived_ids = veh_attr['_arrived_ids']
-        self.k.vehicle._ids_by_edge = veh_attr['_ids_by_edge']
-        self.k.vehicle._arrived_rl_ids = veh_attr['_arrived_rl_ids']
-        self.k.vehicle._departed_ids = veh_attr['_departed_ids']
-        self.k.vehicle._num_arrived = veh_attr['_num_arrived']
-        self.k.vehicle._num_departed = veh_attr['_num_departed']
-        self.k.update(reset=True)
-
-        return None
-
     def bypass(self):
 
         while True:

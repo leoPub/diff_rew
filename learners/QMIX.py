@@ -17,7 +17,6 @@ class QMIX:
         self.mixer = QMixer(args)
         self.params += list(self.mixer.parameters())
         self.target_mixer = copy.deepcopy(self.mixer)
-        self.diversity_mean = 0
         self.normalizer = 0
         self.iteration = 25
         self.optimiser = RMSprop(
@@ -51,7 +50,7 @@ class QMIX:
                             dim=-1).permute(0, 2, 1, 3).to(self.args.device)
 
         # hidden_store = [batch x agent, seq, 64]]
-        mac_out, hidden_store, local_qs, q_f = self.mac.agent.forward(
+        mac_out, hidden_store, local_qs, _ = self.mac.agent.forward(
             input_here.clone().detach(),
             initial_hidden.clone().detach(),
         )

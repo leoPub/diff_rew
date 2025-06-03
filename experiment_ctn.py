@@ -385,7 +385,6 @@ class Experiment:
                     episode_sample.to(self.args.device)
 
                 learner.train(episode_sample, t_env, episode)
-                # learner.train_predict(episode_sample, t_env)
 
     def could_change_lane(self, veh_id, direction):
         if direction == -1:

@@ -17,7 +17,7 @@ We provide the source code implementation of the reward-differential method for 
 
 1. Clone this repository
 
-2. Install [Flow](https://flow-project.github.io/) to [`./flow/`](./flow/) and config SUMO binary
+2. Install [Flow](https://flow-project.github.io/usingFlow.html) to [`./flow/`](./flow/) and config SUMO binary
    
    Flow is a computational framework for deep RL and control experiments for traffic microsimulation.
    To install Flow and the compatible SUMO binary, you should follow
